@@ -18,6 +18,7 @@
 		D850152D27C8660100A47757 /* TodayUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850152C27C8660100A47757 /* TodayUITestsLaunchTests.swift */; };
 		D850153A27C8685000A47757 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850153927C8685000A47757 /* Reminder.swift */; };
 		D850153E27C89D6D00A47757 /* ReminderListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850153D27C89D6D00A47757 /* ReminderListCell.swift */; };
+		D850154227CA2B3900A47757 /* ReminderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850154127CA2B3900A47757 /* ReminderDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		D850152C27C8660100A47757 /* TodayUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D850153927C8685000A47757 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		D850153D27C89D6D00A47757 /* ReminderListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListCell.swift; sourceTree = "<group>"; };
+		D850154127CA2B3900A47757 /* ReminderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +109,6 @@
 				D850153B27C8685A00A47757 /* data */,
 				D850150927C8660000A47757 /* AppDelegate.swift */,
 				D850150B27C8660000A47757 /* SceneDelegate.swift */,
-				D850150D27C8660000A47757 /* ReminderListViewController.swift */,
 				D850150F27C8660000A47757 /* Main.storyboard */,
 				D850151227C8660000A47757 /* Assets.xcassets */,
 				D850151427C8660000A47757 /* LaunchScreen.storyboard */,
@@ -144,7 +145,9 @@
 		D850153C27C89D5F00A47757 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				D850150D27C8660000A47757 /* ReminderListViewController.swift */,
 				D850153D27C89D6D00A47757 /* ReminderListCell.swift */,
+				D850154127CA2B3900A47757 /* ReminderDetailViewController.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				D850150E27C8660000A47757 /* ReminderListViewController.swift in Sources */,
 				D850153E27C89D6D00A47757 /* ReminderListCell.swift in Sources */,
 				D850150A27C8660000A47757 /* AppDelegate.swift in Sources */,
+				D850154227CA2B3900A47757 /* ReminderDetailViewController.swift in Sources */,
 				D850150C27C8660000A47757 /* SceneDelegate.swift in Sources */,
 				D850153A27C8685000A47757 /* Reminder.swift in Sources */,
 			);

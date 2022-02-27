@@ -8,6 +8,19 @@
 import UIKit
 
 class ReminderListViewController: UITableViewController {
+    
+    static let showDetailSegueIdentifier = "ShowReminderDetailSegue"
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == Self.showDetailSegueIdentifier,
+           let destination = segue.destination as? ReminderDetailViewController,
+           let cell = sender as? UITableViewCell,
+           let indexPath = tableView.indexPath(for: cell) {
+            let reminder = Reminder.testData[indexPath.row]
+            destination.configure(with: reminder)
+        }
+    }
 }
 
 extension ReminderListViewController {
@@ -30,7 +43,7 @@ extension ReminderListViewController {
         cell.doneButton.setBackgroundImage(image, for: .normal)
         cell.doneButtonAction = {
             Reminder.testData[indexPath.row].isComplete.toggle()
-            tableView.reloadData()
+            tableView.reloadRows(at: [indexPath], with: .fade)
         }
         
         return cell
