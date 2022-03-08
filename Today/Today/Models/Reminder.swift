@@ -18,6 +18,16 @@ struct Reminder: Identifiable {
     var isComplete: Bool = false
 }
 
+// 제네릭 where 절을 사용하여 제네릭 형식을 조건부로 확장할 수 있습니다.
+extension Array where Element == Reminder {
+    func indexOfReminder(with id: Reminder.ID) -> Self.Index {
+        guard let index = firstIndex(where: { $0.id == id }) else {
+            fatalError()
+        }
+        return index
+    }
+}
+
 /// The #if DEBUG flag is a compilation directive that prevents the enclosed code from compiling when you build the app for release. You can use this flag for testing code in debug builds — or for providing sample test data, like you’ll do in the next step.
 /// '#if DEBUG' flag는 realse용 앱을 빌드할 때 코드가 컴파일되지 않도록 하는 컴파일 지시문입니다.
 /// 디버그 빌드에서 코드를 테스트하거나 샘플 테스트 데이터를 제공하기 위해 이 플래그를 사용할 수 있습니다.
