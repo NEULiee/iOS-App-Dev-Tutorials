@@ -5,7 +5,7 @@
 Apple 개발자 홈페이지의 UIKit 튜토리얼을 보고 정리하는 repository 입니다.  
 배운사항은 Issues에 정리하거나 티스토리 블로그에 정리하였습니다.
 
-CollectionView를 사용한 iOS 생산성 앱인 'Today'를 제작합니다.
+CollectionView를 사용한 iOS 생산성 앱인 '미리알림'을 제작합니다.
 
 #### 화면
 - Reminder List
