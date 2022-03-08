@@ -13,6 +13,7 @@ class ReminderListViewController: UICollectionViewController {
 //    typealias Snapshot = NSDiffableDataSourceSnapshot<Int, String>
     
     var dataSource: DataSource!
+    var reminders: [Reminder] = Reminder.sampleData
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,16 +26,17 @@ class ReminderListViewController: UICollectionViewController {
         
         let cellRegistration = UICollectionView.CellRegistration(handler: cellRegistrationHandler)
     
-        /// Reusing cell allows your app to perform well even with a vast number of items.
+        /// Reusing cell allows your app to perform well even with a vast number of items
+        /// itemIdentifier 를 String 에서 Reminder.ID 로 변경
         dataSource = DataSource(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, itemIdentifier: String) in
+            (collectionView: UICollectionView, indexPath: IndexPath, itemIdentifier: Reminder.ID) in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
         }
         
         // MARK: Snapshot
         var snapshot = Snapshot()
         snapshot.appendSections([0])
-        snapshot.appendItems(Reminder.sampleData.map { $0.title })
+        snapshot.appendItems(reminders.map { $0.id })
         // Applying the snapshot reflects the changes in the user interface
         dataSource.apply(snapshot)
         

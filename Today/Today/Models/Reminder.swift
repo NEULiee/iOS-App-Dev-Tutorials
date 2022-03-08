@@ -9,7 +9,9 @@
 
 import Foundation
 
-struct Reminder {
+struct Reminder: Identifiable {
+    // Identifiable protocol
+    var id: String = UUID().uuidString
     var title: String
     var dueDate: Date
     var notes: String? = nil
