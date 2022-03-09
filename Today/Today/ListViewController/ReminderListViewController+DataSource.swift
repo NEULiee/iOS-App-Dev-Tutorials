@@ -14,6 +14,20 @@ extension ReminderListViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Int, Reminder.ID>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Int, Reminder.ID>
     
+    // apply a snapshot to update user interface when data changes
+    // 여기서는 done button 을 눌렀을 때 새로운 snapshot을 적용한다.
+    func updateSnapshot(reloading ids: [Reminder.ID] = []) {
+        var snapshot = Snapshot()
+        snapshot.appendSections([0])
+        snapshot.appendItems(reminders.map { $0.id })
+        
+        if !ids.isEmpty {
+            snapshot.reloadItems(ids)
+        }
+        
+        dataSource.apply(snapshot)
+    }
+    
     // MARK: Diffable data source / Data source 만들고 초기화
     // which updates and animates the user interface when the data changes.
     // Cell Registration specifies how to configure the content and appearance of a cell.
@@ -56,6 +70,7 @@ extension ReminderListViewController {
         var reminder = reminder(for: id)
         reminder.isComplete.toggle()
         update(reminder, with: id)
+        updateSnapshot(reloading: [id])
     }
     
     func reminder(for id: Reminder.ID) -> Reminder {

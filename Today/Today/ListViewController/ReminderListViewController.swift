@@ -33,12 +33,7 @@ class ReminderListViewController: UICollectionViewController {
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
         }
         
-        // MARK: Snapshot
-        var snapshot = Snapshot()
-        snapshot.appendSections([0])
-        snapshot.appendItems(reminders.map { $0.id })
-        // Applying the snapshot reflects the changes in the user interface
-        dataSource.apply(snapshot)
+        updateSnapshot()
         
         collectionView.dataSource = dataSource
     }
