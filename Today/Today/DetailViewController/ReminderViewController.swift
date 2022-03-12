@@ -11,6 +11,7 @@ import UIKit
 class ReminderViewController: UICollectionViewController {
     
     private typealias DataSource = UICollectionViewDiffableDataSource<Int, Row>
+    private typealias Snapshot = NSDiffableDataSourceSnapshot<Int, Row>
     
     var reminder: Reminder
     private var dataSource: DataSource!
@@ -40,9 +41,11 @@ class ReminderViewController: UICollectionViewController {
         dataSource = DataSource(collectionView: collectionView) { (collectionView: UICollectionView, indexPath: IndexPath, itemIdentifier: Row) in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
         }
+        
+        updateSanpshot()
     }
     
-    // MARK: - Cell Register handler
+    // MARK: - DataSource
     func cellRegistrationHandler(cell: UICollectionViewListCell, indexPath: IndexPath, row: Row) {
         // 여러 configuration 찾아보기
         var contentConfiguration = cell.defaultContentConfiguration()
@@ -51,6 +54,15 @@ class ReminderViewController: UICollectionViewController {
         contentConfiguration.image = row.image
         cell.contentConfiguration = contentConfiguration
         cell.tintColor = .todayPrimaryTint
+    }
+    
+    private func updateSanpshot() {
+        var snapshot = Snapshot()
+        
+        // snapshot 에 대해 더 자세하게
+        snapshot.appendSections([0])
+        snapshot.appendItems([.viewTitle, .viewDate, .viewTime, .viewNotes], toSection: 0)
+        dataSource.apply(snapshot)
     }
     
     func text(for row: Row) -> String? {

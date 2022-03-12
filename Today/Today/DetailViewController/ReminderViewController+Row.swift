@@ -24,7 +24,7 @@ extension ReminderViewController {
         // computed property 란?
         var imageName: String? {
             switch self {
-            case .viewDate: return "calendar.cicle"
+            case .viewDate: return "calendar.circle"
             case .viewNotes: return "square.and.pencil"
             case .viewTime: return "clock"
             default: return nil
