@@ -10,8 +10,9 @@ import UIKit
 // Reminder Detail view
 class ReminderViewController: UICollectionViewController {
     
-    private typealias DataSource = UICollectionViewDiffableDataSource<Int, Row>
-    private typealias Snapshot = NSDiffableDataSourceSnapshot<Int, Row>
+    // Int 대신 Section enum을 사용한다.
+    private typealias DataSource = UICollectionViewDiffableDataSource<Section, Row>
+    private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Row>
     
     var reminder: Reminder
     private var dataSource: DataSource!
@@ -62,9 +63,20 @@ class ReminderViewController: UICollectionViewController {
         var snapshot = Snapshot()
         
         // snapshot 에 대해 더 자세하게
-        snapshot.appendSections([0])
-        snapshot.appendItems([.viewTitle, .viewDate, .viewTime, .viewNotes], toSection: 0)
+        snapshot.appendSections([.view])
+        snapshot.appendItems([.viewTitle, .viewDate, .viewTime, .viewNotes], toSection: .view)
         dataSource.apply(snapshot)
+    }
+    
+    // isEditing 이란?
+    // detail 보기 모드에서는 모든 item이 section 0 에만 나타났지만
+    // edit 편집 모드에서는 title, date, notes 가 각각 section 1, 2, 3 에 나타난다.
+    private func section(for indexPath: IndexPath) -> Section {
+        let sectionNumber = isEditing ? indexPath.section + 1 : indexPath.section
+        guard let section = Section(rawValue: sectionNumber) else {
+            fatalError("Unable to find matching section")
+        }
+        return section
     }
     
     func text(for row: Row) -> String? {
