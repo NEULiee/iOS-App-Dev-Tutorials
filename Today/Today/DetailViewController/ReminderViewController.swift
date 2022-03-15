@@ -45,21 +45,35 @@ class ReminderViewController: UICollectionViewController {
         
         navigationItem.title = NSLocalizedString("Reminder", comment: "Reminder view controller title")
         
-        updateSanpshot()
+        updateSnapshotForViewing()
     }
     
     // MARK: - DataSource
     func cellRegistrationHandler(cell: UICollectionViewListCell, indexPath: IndexPath, row: Row) {
-        // 여러 configuration 찾아보기
-        var contentConfiguration = cell.defaultContentConfiguration()
-        contentConfiguration.text = text(for: row)
-        contentConfiguration.textProperties.font = UIFont.preferredFont(forTextStyle: row.textStyle)
-        contentConfiguration.image = row.image
-        cell.contentConfiguration = contentConfiguration
+        // viewing mode & editing mode
+        let section = section(for: indexPath)
+        switch (section, row) {
+        case (.view, _):
+            // 여러 configuration 찾아보기
+            var contentConfiguration = cell.defaultContentConfiguration()
+            contentConfiguration.text = text(for: row)
+            contentConfiguration.textProperties.font = UIFont.preferredFont(forTextStyle: row.textStyle)
+            contentConfiguration.image = row.image
+            cell.contentConfiguration = contentConfiguration
+        default:
+            fatalError("Unexpented combination of section and row.")
+        }
+        
         cell.tintColor = .todayPrimaryTint
     }
     
-    private func updateSanpshot() {
+    private func updateSnapshotForEditing() {
+        var snapshot = Snapshot()
+        snapshot.appendSections([.title, .date, .notes])
+        dataSource.apply(snapshot)
+    }
+    
+    private func updateSnapshotForViewing() {
         var snapshot = Snapshot()
         
         // snapshot 에 대해 더 자세하게
