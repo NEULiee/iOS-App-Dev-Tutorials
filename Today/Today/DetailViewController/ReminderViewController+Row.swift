@@ -16,6 +16,8 @@ extension ReminderViewController {
     
     // Hashable로 enum을 선언하는 이유는?
     enum Row: Hashable {
+        // 각 세션의 헤더
+        case header(String)
         case viewDate
         case viewNotes
         case viewTime

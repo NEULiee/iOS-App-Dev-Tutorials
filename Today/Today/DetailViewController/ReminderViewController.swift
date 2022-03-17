@@ -23,6 +23,8 @@ class ReminderViewController: UICollectionViewController {
         // .insetGrouped 모양으로 list를 구성
         var listConfiguration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         listConfiguration.showsSeparators = false
+        // header 설정
+        listConfiguration.headerMode = .firstItemInSection
         let listLayout = UICollectionViewCompositionalLayout.list(using: listConfiguration)
         super.init(collectionViewLayout: listLayout)
     }
@@ -65,6 +67,11 @@ class ReminderViewController: UICollectionViewController {
         // viewing mode & editing mode
         let section = section(for: indexPath)
         switch (section, row) {
+        // header cell
+        case (_, .header(let title)):
+            var contentConfiguration = cell.defaultContentConfiguration()
+            contentConfiguration.text = title
+            cell.contentConfiguration = contentConfiguration
         case (.view, _):
             // 여러 configuration 찾아보기
             var contentConfiguration = cell.defaultContentConfiguration()
@@ -82,6 +89,10 @@ class ReminderViewController: UICollectionViewController {
     private func updateSnapshotForEditing() {
         var snapshot = Snapshot()
         snapshot.appendSections([.title, .date, .notes])
+        // 헤더 추가
+        snapshot.appendItems([.header(Section.title.name)], toSection: .title)
+        snapshot.appendItems([.header(Section.date.name)], toSection: .date)
+        snapshot.appendItems([.header(Section.notes.name)], toSection: .notes)
         dataSource.apply(snapshot)
     }
     
@@ -90,7 +101,8 @@ class ReminderViewController: UICollectionViewController {
         
         // snapshot 에 대해 더 자세하게
         snapshot.appendSections([.view])
-        snapshot.appendItems([.viewTitle, .viewDate, .viewTime, .viewNotes], toSection: .view)
+        // view 모드에서는 헤더가 필요하지않다.
+        snapshot.appendItems([.header(""), .viewTitle, .viewDate, .viewTime, .viewNotes], toSection: .view)
         dataSource.apply(snapshot)
     }
     
@@ -111,6 +123,7 @@ class ReminderViewController: UICollectionViewController {
         case .viewNotes: return reminder.notes
         case .viewTime: return reminder.dueDate.formatted(date: .omitted, time: .shortened)
         case .viewTitle: return reminder.title
+        default: return nil
         }
     }
 }
