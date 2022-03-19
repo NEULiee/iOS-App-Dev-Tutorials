@@ -17,7 +17,11 @@ class TextFieldContentView: UIView, UIContentView {
     }
     
     // UIContentView protocol
-    var configuration: UIContentConfiguration
+    var configuration: UIContentConfiguration {
+        didSet {
+            configure(configuration: configuration)
+        }
+    }
     
     let textField = UITextField()
     
@@ -35,5 +39,16 @@ class TextFieldContentView: UIView, UIContentView {
     // UIView의 서브클래스인 custom view를 구현할 때는 필수로 구현해야한다.
     required init?(coder: NSCoder) {
         fatalError("init(code:) has not been implemented")
+    }
+    
+    func configure(configuration: UIContentConfiguration) {
+        guard let configuration = configuration as? Configuration else { return }
+        textField.text = configuration.text
+    }
+}
+
+extension UICollectionViewListCell {
+    func textFieldConfiguration() -> TextFieldContentView.Configuration {
+        TextFieldContentView.Configuration()
     }
 }
