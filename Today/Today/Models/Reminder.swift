@@ -9,7 +9,7 @@
 
 import Foundation
 
-struct Reminder: Identifiable {
+struct Reminder: Equatable, Identifiable {
     // Identifiable protocol
     var id: String = UUID().uuidString
     var title: String

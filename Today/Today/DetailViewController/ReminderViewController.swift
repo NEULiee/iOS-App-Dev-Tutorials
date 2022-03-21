@@ -15,11 +15,13 @@ class ReminderViewController: UICollectionViewController {
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Row>
     
     var reminder: Reminder
+    var workingReminder: Reminder
     private var dataSource: DataSource!
     
     // Swift에서 class와 structure는 인스턴스가 생성될 때까지 저장된 모든 속성에 초기값을 할당해야한다.
     init(reminder: Reminder) {
         self.reminder = reminder
+        self.workingReminder = reminder
         // .insetGrouped 모양으로 list를 구성
         var listConfiguration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         listConfiguration.showsSeparators = false
@@ -56,9 +58,9 @@ class ReminderViewController: UICollectionViewController {
         super.setEditing(editing, animated: animated)
         
         if editing {
-            updateSnapshotForEditing()
+            prepareForEdting()
         } else {
-            updateSnapshotForViewing()
+            prepareForViewing()
         }
     }
     
@@ -85,6 +87,11 @@ class ReminderViewController: UICollectionViewController {
         cell.tintColor = .todayPrimaryTint
     }
     
+    // MARK: - edit mode
+    private func prepareForEdting() {
+        updateSnapshotForEditing()
+    }
+    
     private func updateSnapshotForEditing() {
         var snapshot = Snapshot()
         snapshot.appendSections([.title, .date, .notes])
@@ -93,6 +100,14 @@ class ReminderViewController: UICollectionViewController {
         snapshot.appendItems([.header(Section.date.name), .editDate(reminder.dueDate)], toSection: .date)
         snapshot.appendItems([.header(Section.notes.name), .editText(reminder.notes)], toSection: .notes)
         dataSource.apply(snapshot)
+    }
+    
+    // MARK: - view mode
+    private func prepareForViewing() {
+        if workingReminder != reminder {
+            reminder = workingReminder
+        }
+        updateSnapshotForViewing()
     }
     
     private func updateSnapshotForViewing() {
