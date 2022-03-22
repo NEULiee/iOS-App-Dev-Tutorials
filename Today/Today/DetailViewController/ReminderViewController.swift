@@ -14,14 +14,20 @@ class ReminderViewController: UICollectionViewController {
     private typealias DataSource = UICollectionViewDiffableDataSource<Section, Row>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Row>
     
-    var reminder: Reminder
+    var reminder: Reminder {
+        didSet {
+            onChange(reminder)
+        }
+    }
     var workingReminder: Reminder
+    var onChange: (Reminder)->Void
     private var dataSource: DataSource!
     
     // Swift에서 class와 structure는 인스턴스가 생성될 때까지 저장된 모든 속성에 초기값을 할당해야한다.
-    init(reminder: Reminder) {
+    init(reminder: Reminder, onChange: @escaping (Reminder)->Void) {
         self.reminder = reminder
         self.workingReminder = reminder
+        self.onChange = onChange
         // .insetGrouped 모양으로 list를 구성
         var listConfiguration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         listConfiguration.showsSeparators = false
