@@ -20,6 +20,7 @@ class ReminderViewController: UICollectionViewController {
         }
     }
     var workingReminder: Reminder
+    var isAddingNewReminder = false
     var onChange: (Reminder)->Void
     private var dataSource: DataSource!
     
@@ -66,7 +67,11 @@ class ReminderViewController: UICollectionViewController {
         if editing {
             prepareForEdting()
         } else {
-            prepareForViewing()
+            if !isAddingNewReminder {
+                prepareForViewing()
+            } else {
+                onChange(workingReminder)
+            }
         }
     }
     
@@ -75,7 +80,7 @@ class ReminderViewController: UICollectionViewController {
         // viewing mode & editing mode
         let section = section(for: indexPath)
         switch (section, row) {
-        // header cell
+            // header cell
         case (_, .header(let title)):
             cell.contentConfiguration = headerConfiguration(for: cell, with: title)
         case (.view, _):
