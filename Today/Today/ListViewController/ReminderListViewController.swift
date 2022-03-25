@@ -66,6 +66,25 @@ class ReminderListViewController: UICollectionViewController {
         listConfiguration.showsSeparators = false
         listConfiguration.backgroundColor = .clear
         
+        // swipe action 추가
+        listConfiguration.trailingSwipeActionsConfigurationProvider = makeSwipeActions
+        
         return UICollectionViewCompositionalLayout.list(using: listConfiguration)
+    }
+    
+    // swipe 해서 delete
+    // 각각의 swipe action 에는 사용자가 왼쪽 또는 오른쪽으로 살짝 밀어 수행할 수 있는 작업을 정의하는
+    // UIContextualAction 객체의 집합이 포함되어 있다.
+    
+    // 목록의 각 항목에 대한 UISwipeActionsConfiguration 을 생성하는 함수를 생성한다.
+    private func makeSwipeActions(for indexPath: IndexPath?) -> UISwipeActionsConfiguration? {
+        guard let indexPath = indexPath, let id = dataSource.itemIdentifier(for: indexPath) else { return nil }
+        let deleteActionTitle = NSLocalizedString("Delete", comment: "Delete action title")
+        let deleteAction = UIContextualAction(style: .destructive, title: deleteActionTitle) { [weak self] _, _, completion in
+            self?.deleteReminder(with: id)
+            self?.updateSnapshot()
+            completion(false)
+        }
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
 }
