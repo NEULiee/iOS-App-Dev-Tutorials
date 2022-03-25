@@ -94,6 +94,10 @@ extension ReminderListViewController {
         updateSnapshot(reloading: [id])
     }
     
+    func add(_ reminder: Reminder) {
+        reminders.append(reminder)
+    }
+    
     func reminder(for id: Reminder.ID) -> Reminder {
         let index = reminders.indexOfReminder(with: id)
         return reminders[index]
