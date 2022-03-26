@@ -23,10 +23,11 @@ extension ReminderListViewController {
     
     // apply a snapshot to update user interface when data changes
     // 여기서는 done button 을 눌렀을 때 새로운 snapshot을 적용한다.
-    func updateSnapshot(reloading ids: [Reminder.ID] = []) {
+    func updateSnapshot(reloading idsThatChanged: [Reminder.ID] = []) {
+        let ids = idsThatChanged.filter { id in filteredReminders.contains(where: { $0.id == id })}
         var snapshot = Snapshot()
         snapshot.appendSections([0])
-        snapshot.appendItems(reminders.map { $0.id })
+        snapshot.appendItems(filteredReminders.map { $0.id })
         
         if !ids.isEmpty {
             snapshot.reloadItems(ids)
