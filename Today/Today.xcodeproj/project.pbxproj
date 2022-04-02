@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D80E6CAA27F831D4006FA0F2 /* ProgressHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80E6CA927F831D4006FA0F2 /* ProgressHeaderView.swift */; };
 		D81E7EC927E5E81400FDC311 /* TextFieldContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81E7EC827E5E81400FDC311 /* TextFieldContentView.swift */; };
 		D81E7ECB27E5EE0D00FDC311 /* UIContentConfiguration+Stateless.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81E7ECA27E5EE0D00FDC311 /* UIContentConfiguration+Stateless.swift */; };
 		D831FB4027D4D60B00F91045 /* UIColor+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831FB3F27D4D60B00F91045 /* UIColor+Today.swift */; };
@@ -57,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D80E6CA927F831D4006FA0F2 /* ProgressHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHeaderView.swift; sourceTree = "<group>"; };
 		D81E7EC827E5E81400FDC311 /* TextFieldContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldContentView.swift; sourceTree = "<group>"; };
 		D81E7ECA27E5EE0D00FDC311 /* UIContentConfiguration+Stateless.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIContentConfiguration+Stateless.swift"; sourceTree = "<group>"; };
 		D831FB3F27D4D60B00F91045 /* UIColor+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Today.swift"; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				D84D880C27D24200009B266B /* ReminderListViewController.swift */,
 				D8A722E727D4B8570056270A /* ReminderListViewController+DataSource.swift */,
 				D8360AEC27D7746600F56C07 /* ReminderListViewController+Actions.swift */,
+				D80E6CA927F831D4006FA0F2 /* ProgressHeaderView.swift */,
 			);
 			path = ListViewController;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				D8F45AD527DB6E1D00DB741C /* ReminderViewController+Row.swift in Sources */,
 				D850153E27C89D6D00A47757 /* l_ReminderListCell.swift in Sources */,
 				D850150A27C8660000A47757 /* AppDelegate.swift in Sources */,
+				D80E6CAA27F831D4006FA0F2 /* ProgressHeaderView.swift in Sources */,
 				D84D880D27D24200009B266B /* ReminderListViewController.swift in Sources */,
 				D8B3B5F827E0BCAE00F5BC1C /* ReminderViewController+Section.swift in Sources */,
 				D8C5651927E4B894008334B7 /* ReminderViewController+CellConfiguration.swift in Sources */,
