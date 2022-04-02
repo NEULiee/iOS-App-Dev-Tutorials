@@ -34,6 +34,7 @@ extension ReminderListViewController {
         }
         
         dataSource.apply(snapshot)
+        headerView?.progress = progress
     }
     
     // MARK: Diffable data source / Data source 만들고 초기화
