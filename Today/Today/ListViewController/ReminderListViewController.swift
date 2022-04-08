@@ -101,6 +101,16 @@ class ReminderListViewController: UICollectionViewController {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
+    func showError(_ error: Error) {
+        let alertTitle = NSLocalizedString("Error", comment: "Error alert title")
+        let alert = UIAlertController(title: alertTitle, message: error.localizedDescription, preferredStyle: .alert)
+        let actionTitle = NSLocalizedString("OK", comment: "Alert OK button title")
+        alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: { [weak self] _ in
+            self?.dismiss(animated: true)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
     /// This function creates a new list configuration variable with the grouped appearance.
     /// compositionalLayout 으로 collectionViewLayout 을 구성
     private func listLayout() -> UICollectionViewCompositionalLayout {
@@ -140,8 +150,8 @@ class ReminderListViewController: UICollectionViewController {
     func refreshBackground() {
         collectionView.backgroundView = nil
         let backgroundView = UIView()
-        var graientLayer = CAGradientLayer.gradientLayer(for: listStyle, in: collectionView.frame)
-        backgroundView.layer.addSublayer(graientLayer)
+        let gradientLayer = CAGradientLayer.gradientLayer(for: listStyle, in: collectionView.frame)
+        backgroundView.layer.addSublayer(gradientLayer)
         collectionView.backgroundView = backgroundView
     }
 }
