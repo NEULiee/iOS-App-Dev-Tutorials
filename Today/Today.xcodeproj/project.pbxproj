@@ -32,6 +32,7 @@
 		D852A72C27E72F0900FE807C /* DatePickerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D852A72B27E72F0900FE807C /* DatePickerContentView.swift */; };
 		D860554927FC4A9C00BA98A7 /* CAGradientLayer+ListStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D860554827FC4A9C00BA98A7 /* CAGradientLayer+ListStyle.swift */; };
 		D8971BEC2800052F00568ED0 /* Reminder+EKReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8971BEB2800052E00568ED0 /* Reminder+EKReminder.swift */; };
+		D8971BEE2800140900568ED0 /* ReminderStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8971BED2800140900568ED0 /* ReminderStore.swift */; };
 		D8A722E527D3B1140056270A /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A722E427D3B1140056270A /* Date+Today.swift */; };
 		D8A722E827D4B8570056270A /* ReminderListViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A722E727D4B8570056270A /* ReminderListViewController+DataSource.swift */; };
 		D8B3B5F827E0BCAE00F5BC1C /* ReminderViewController+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3B5F727E0BCAE00F5BC1C /* ReminderViewController+Section.swift */; };
@@ -91,6 +92,7 @@
 		D852A72B27E72F0900FE807C /* DatePickerContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerContentView.swift; sourceTree = "<group>"; };
 		D860554827FC4A9C00BA98A7 /* CAGradientLayer+ListStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+ListStyle.swift"; sourceTree = "<group>"; };
 		D8971BEB2800052E00568ED0 /* Reminder+EKReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reminder+EKReminder.swift"; sourceTree = "<group>"; };
+		D8971BED2800140900568ED0 /* ReminderStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderStore.swift; sourceTree = "<group>"; };
 		D8A722E427D3B1140056270A /* Date+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Today.swift"; sourceTree = "<group>"; };
 		D8A722E727D4B8570056270A /* ReminderListViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReminderListViewController+DataSource.swift"; sourceTree = "<group>"; };
 		D8B3B5F727E0BCAE00F5BC1C /* ReminderViewController+Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReminderViewController+Section.swift"; sourceTree = "<group>"; };
@@ -214,15 +216,16 @@
 		D850155C27D10C6500A47757 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D8F9004227FDC8F900195A1F /* TodayError.swift */,
+				D8F9004427FDCA4700195A1F /* EKEventStore+AsyncFetch.swift */,
 				D850155D27D10C7F00A47757 /* Reminder.swift */,
 				D8971BEB2800052E00568ED0 /* Reminder+EKReminder.swift */,
-				D8A722E427D3B1140056270A /* Date+Today.swift */,
-				D831FB3F27D4D60B00F91045 /* UIColor+Today.swift */,
+				D8971BED2800140900568ED0 /* ReminderStore.swift */,
 				D8360AEA27D7738400F56C07 /* ReminderDoneButton.swift */,
 				D8F0422927EEF0150093DF28 /* ReminderListStyle.swift */,
 				D860554827FC4A9C00BA98A7 /* CAGradientLayer+ListStyle.swift */,
-				D8F9004227FDC8F900195A1F /* TodayError.swift */,
-				D8F9004427FDCA4700195A1F /* EKEventStore+AsyncFetch.swift */,
+				D8A722E427D3B1140056270A /* Date+Today.swift */,
+				D831FB3F27D4D60B00F91045 /* UIColor+Today.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				D8A722E527D3B1140056270A /* Date+Today.swift in Sources */,
 				D860554927FC4A9C00BA98A7 /* CAGradientLayer+ListStyle.swift in Sources */,
 				D850150E27C8660000A47757 /* l_ReminderListViewController.swift in Sources */,
+				D8971BEE2800140900568ED0 /* ReminderStore.swift in Sources */,
 				D852A72A27E7299900FE807C /* TextViewContentView.swift in Sources */,
 				D8F45AD527DB6E1D00DB741C /* ReminderViewController+Row.swift in Sources */,
 				D850153E27C89D6D00A47757 /* l_ReminderListCell.swift in Sources */,
