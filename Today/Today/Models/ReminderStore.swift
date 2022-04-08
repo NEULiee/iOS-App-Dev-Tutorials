@@ -20,6 +20,27 @@ class ReminderStore {
         EKEventStore.authorizationStatus(for: .reminder) == .authorized
     }
     
+    func requestAccess() async throws {
+        // reminder 권한 부여 상태
+        let status = EKEventStore.authorizationStatus(for: .reminder)
+        
+        switch status {
+        case .authorized:
+            return
+        case .restricted:
+            throw TodayError.accessRestricted
+        case .notDetermined:
+            let accessGranted = try await ekStore.requestAccess(to: .reminder)
+            guard accessGranted else {
+                throw TodayError.accessDenied
+            }
+        case .denied:
+            throw TodayError.accessDenied
+        @unknown default:
+            throw TodayError.unknown
+        }
+    }
+    
     func readAll() async throws -> [Reminder] {
         guard isAvailabel else {
             throw TodayError.accessDenied
